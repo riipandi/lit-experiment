@@ -1,9 +1,10 @@
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
+import litCss from "vite-plugin-lit-css";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-	plugins: [tsconfigPaths()],
+	plugins: [litCss({ exclude: "./src/styles/main.css" }), tsconfigPaths()],
 	publicDir: resolve("public"),
 	envPrefix: ["PUBLIC_", "VITE_"],
 	clearScreen: true,
@@ -16,6 +17,7 @@ export default defineConfig({
 		outDir: resolve("dist"),
 		minify: false,
 	},
+	css: { devSourcemap: true },
 	server: { port: 5173 },
 	preview: { port: 5173 },
 	esbuild: { legalComments: "none" },

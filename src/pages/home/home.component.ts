@@ -1,8 +1,8 @@
-import { LitElement, html } from "lit";
+import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import litLogo from "/images/lit.svg";
 import viteLogo from "/images/vite.svg";
-import { styles } from "./home.styles";
+import { BaseElement } from "#/core/base-element";
 
 /**
  * An example element.
@@ -11,7 +11,7 @@ import { styles } from "./home.styles";
  * @csspart button - The button
  */
 @customElement("page-home")
-export class PageHome extends LitElement {
+export class PageHome extends BaseElement {
 	/**
 	 * Copy for the read the docs hint.
 	 */
@@ -26,28 +26,37 @@ export class PageHome extends LitElement {
 
 	render() {
 		return html`
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src=${viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://lit.dev" target="_blank">
-          <img src=${litLogo} class="logo lit" alt="Lit logo" />
-        </a>
+      <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="flex flex-col items-center justify-center min-h-[70vh]">
+          <div class="flex justify-center items-center gap-8 mb-8">
+            <a href="https://vite.dev" target="_blank" class="hover:opacity-80 transition-opacity">
+              <img src=${viteLogo} class="h-24 w-24" alt="Vite logo" />
+            </a>
+            <a href="https://lit.dev" target="_blank" class="hover:opacity-80 transition-opacity">
+              <img src=${litLogo} class="h-24 w-24" alt="Lit logo" />
+            </a>
+          </div>
+
+          <div class="mb-8">
+            <slot></slot>
+          </div>
+
+          <div class="flex justify-center mb-6">
+            <my-button
+              size="medium"
+              variant="primary"
+              @:click=${this._onClick}
+              ?disabled=${this.count >= 10}
+              class="${this.count >= 10 ? "opacity-50 cursor-not-allowed" : "hover:scale-105 transition-transform"}"
+              part="button"
+            >
+              count is ${this.count}
+            </my-button>
+          </div>
+
+          <p class="text-sm text-gray-500 text-center">${this.docsHint}</p>
+        </div>
       </div>
-      <slot></slot>
-      <div class="bg-black size-2xl">
-        <my-button
-          size="medium"
-          variant="primary"
-          @:click=${this._onClick}
-          ?disabled=${this.count >= 10}
-          class="green"
-          part="button"
-        >
-          count is ${this.count}
-        </my-button>
-      </div>
-      <p class="read-the-docs">${this.docsHint}</p>
     `;
 	}
 
@@ -55,5 +64,5 @@ export class PageHome extends LitElement {
 		this.count++;
 	}
 
-	static styles = styles;
+	static styles = [];
 }

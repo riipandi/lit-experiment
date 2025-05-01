@@ -1,0 +1,392 @@
+@theme {
+    /* ------------------- Animation for accordion -------------------  */
+    --animate-accordion-open: accordion-open 0.25s cubic-bezier(0.87, 0, 0.13, 1);
+    --animate-accordion-close: accordion-close 0.25s cubic-bezier(0.87, 0, 0.13, 1);
+
+    @keyframes accordion-open {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-accordion-content-height);
+        }
+    }
+
+    @keyframes accordion-close {
+        from {
+            height: var(--radix-accordion-content-height);
+        }
+        to {
+            height: 0;
+        }
+    }
+
+    /* ------------------- Animation for dialog -------------------  */
+    --animate-dialog-overlay-show: dialog-overlay-show 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-dialog-overlay-hide: dialog-overlay-hide 0.15s ease-out;
+    --animate-dialog-content-show: dialog-content-show 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-dialog-content-hide: dialog-content-hide 0.15s ease-out;
+
+    @keyframes dialog-overlay-show {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes dialog-overlay-hide {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes dialog-content-show {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -48%);
+            transform: scale(0.96);
+            filter: blur(4px);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            transform: scale(1);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes dialog-content-hide {
+        from {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            transform: scale(1);
+            filter: blur(0);
+        }
+        to {
+            opacity: 0;
+            transform: translate(-50%, -48%);
+            transform: scale(0.96);
+            filter: blur(4px);
+        }
+    }
+
+    /* ------------------- Animation for drawer -------------------  */
+    --animate-drawer-slide-left-in: drawer-slide-left-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-drawer-slide-left-out: drawer-slide-left-out 0.25s ease-in;
+    --animate-drawer-slide-right-in: drawer-slide-right-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-drawer-slide-right-out: drawer-slide-right-out 0.25s ease-in;
+    --animate-drawer-slide-top-in: drawer-slide-top-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-drawer-slide-top-out: drawer-slide-top-out 0.25s ease-in;
+    --animate-drawer-slide-bottom-in: drawer-slide-bottom-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-drawer-slide-bottom-out: drawer-slide-bottom-out 0.25s ease-in;
+
+    /* Drawer sliding from right to left (entering) */
+    @keyframes drawer-slide-right-in {
+        from {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Drawer sliding from left to right (exiting) */
+    @keyframes drawer-slide-right-out {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+    }
+
+    /* Drawer sliding from left to right (entering) */
+    @keyframes drawer-slide-left-in {
+        from {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Drawer sliding from right to left (exiting) */
+    @keyframes drawer-slide-left-out {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+    }
+
+    /* Drawer sliding from bottom to top (entering) */
+    @keyframes drawer-slide-bottom-in {
+        from {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Drawer sliding from top to bottom (exiting) */
+    @keyframes drawer-slide-bottom-out {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+    }
+
+    /* Drawer sliding from top to bottom (entering) */
+    @keyframes drawer-slide-top-in {
+        from {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Drawer sliding from bottom to top (exiting) */
+    @keyframes drawer-slide-top-out {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+    }
+
+    /* ------------------- Animation for popover -------------------  */
+    --animate-hide: hide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-slide-down-fade: slide-down-fade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-slide-up-fade: slide-up-fade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-slide-right-fade: slide-right-fade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-slide-left-fade: slide-left-fade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    @keyframes hide {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes slide-down-fade {
+        from {
+            opacity: 0;
+            transform: translateY(-6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slide-up-fade {
+        from {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slide-right-fade {
+        from {
+            opacity: 0;
+            transform: translateX(-6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-left-fade {
+        from {
+            opacity: 0;
+            transform: translateX(6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* ------------------- Animation for collapsible -------------------  */
+    --animate-collapsible-open: collapsible-open 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-collapsible-close: collapsible-close 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    @keyframes collapsible-open {
+        from {
+            opacity: 0;
+            height: 0;
+            transform: translateY(-4px);
+        }
+        to {
+            opacity: 1;
+            height: var(--radix-collapsible-content-height);
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes collapsible-close {
+        from {
+            opacity: 1;
+            height: var(--radix-collapsible-content-height);
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            height: 0;
+            transform: translateY(-4px);
+        }
+    }
+
+    /* ------------------- Animation for context menu -------------------  */
+    --animate-context-menu-fade-in: context-menu-fade-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-context-menu-fade-out: context-menu-fade-out 0.15s ease-out;
+
+    @keyframes context-menu-fade-in {
+        from {
+            opacity: 0;
+            transform: translate(-4px, -4px);
+        }
+        to {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+
+    @keyframes context-menu-fade-out {
+        from {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        to {
+            opacity: 0;
+            transform: translate(-4px, -4px);
+        }
+    }
+
+    /* ------------------- Animation for navigation menu -------------------  */
+    --animate-navmenu-enter-from-left: navmenu-enter-from-left 0.30s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-navmenu-enter-from-right: navmenu-enter-from-right 0.30s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-navmenu-exit-to-left: navmenu-exit-to-left 0.15s ease-out;
+    --animate-navmenu-exit-to-right: navmenu-exit-to-right 0.15s ease-out;
+    --animate-nav-viewport-open: nav-viewport-open 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-nav-viewport-close: nav-viewport-close 0.1s ease-out;
+
+    @keyframes navmenu-enter-from-left {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes navmenu-enter-from-right {
+        from {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes navmenu-exit-to-left {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+    }
+
+    @keyframes navmenu-exit-to-right {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+    }
+
+    @keyframes nav-viewport-open {
+        from {
+            opacity: 0;
+            height: 0;
+            transform: translateY(-8px);
+        }
+        to {
+            opacity: 1;
+            height: var(--radix-navigation-menu-viewport-height);
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes nav-viewport-close {
+        from {
+            opacity: 1;
+            height: var(--radix-navigation-menu-viewport-height);
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            height: 0;
+            transform: translateY(-8px);
+        }
+    }
+
+    /* ------------------- Animation for input-pin -------------------  */
+    --animate-caret-blink: caret-blink 1.2s ease-out infinite;
+
+    @keyframes caret-blink {
+        0%,
+        70%,
+        100% {
+            opacity: 1;
+        }
+        20%,
+        50% {
+            opacity: 0;
+        }
+    }
+}
