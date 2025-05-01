@@ -66,3 +66,9 @@ export class PageHome extends BaseElement {
 
 	static styles = [];
 }
+
+declare global {
+	interface HTMLElementTagNameMap {
+		"page-home": PageHome;
+	}
+}

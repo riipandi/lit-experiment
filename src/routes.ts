@@ -12,34 +12,44 @@ export class MyApp extends BaseElement {
 				path: "/",
 				render: () =>
 					html`
-            <page-home>
-              <h1>Vite + Lit + Tailwind CSS</h1>
-            </page-home>
+            <root-layout @navigate=${this._onNavigate}>
+              <page-home>
+                <h1>Vite + Lit + Tailwind CSS</h1>
+              </page-home>
+            </root-layout>
           `,
 			},
-			{ path: "/projects", render: () => html`<h1>Projects</h1>` },
-			{ path: "/about", render: () => html`<h1>About</h1>` },
+			{
+				path: "/projects",
+				render: () => html`
+					<root-layout @navigate=${this._onNavigate}>
+						<h1>Projects</h1>
+					</root-layout>
+				`,
+			},
+			{
+				path: "/about",
+				render: () => html`
+					<root-layout @navigate=${this._onNavigate}>
+						<h1>About</h1>
+					</root-layout>
+				`,
+			},
 		],
 		{
-			fallback: { render: () => html`<h1>Page Not Found</h1>` },
+			fallback: {
+				render: () =>
+					html` <page-not-found @navigate=${this._onNavigate}></page-not-found>`,
+			},
 		},
 	);
 
 	render() {
-		return html`
-			<nav class="flex gap-4">
-				<a class="hover:underline cursor-pointer" @click=${(e: Event) => this._handleNavClick(e, "/")}>Home</a>
-				<a class="hover:underline cursor-pointer" @click=${(e: Event) => this._handleNavClick(e, "/projects")}>Projects</a>
-				<a class="hover:underline cursor-pointer" @click=${(e: Event) => this._handleNavClick(e, "/about")}>About</a>
-			</nav>
-			<main class="mt-4">
-				${this._routes.outlet()}
-			</main>
-		`;
+		return this._routes.outlet();
 	}
 
-	private _handleNavClick(e: Event, path: string) {
-		e.preventDefault();
+	private _onNavigate(e: CustomEvent) {
+		const path = e.detail.path;
 		this._routes.goto(path);
 		window.history.pushState(null, "", path);
 	}
@@ -53,7 +63,6 @@ export class MyApp extends BaseElement {
 		// Make sure the initial route is correctly rendered.
 		// If the URL is currently empty or /, point to the home route.
 		if (window.location.pathname === "/" || window.location.pathname === "") {
-			// Tidak perlu mengubah URL karena sudah berada di root
 			this._routes.goto("/");
 		} else {
 			// If other urls, navigate to the URL

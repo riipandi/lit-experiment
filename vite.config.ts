@@ -4,7 +4,7 @@ import litCss from "vite-plugin-lit-css";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-	plugins: [litCss({ exclude: "./src/styles/main.css" }), tsconfigPaths()],
+	plugins: [litCss({ exclude: "./src/styles/theme.css" }), tsconfigPaths()],
 	publicDir: resolve("public"),
 	envPrefix: ["PUBLIC_", "VITE_"],
 	clearScreen: true,
