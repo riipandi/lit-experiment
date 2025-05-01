@@ -1,46 +1,28 @@
-import { LitElement, html } from "lit";
+import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { buttonStyles, styles } from "./button.styles";
+import { BaseElement } from "#/core/base-element";
+import { type ButtonStyles, buttonStyles } from "./button.css";
 
-/**
- * A customizable button component with different variants
- *
- * @slot - Button content
- * @csspart button - The button element
- */
 @customElement("my-button")
-export class MyButton extends LitElement {
-	/**
-	 * The button variant
-	 * @type {"primary" | "secondary" | "danger"}
-	 */
+export class MyButton extends BaseElement {
 	@property({ type: String })
-	variant: "primary" | "secondary" | "danger" = "primary";
+	variant: ButtonStyles["variant"] = "primary";
 
-	/**
-	 * The button size
-	 * @type {"small" | "medium" | "large"}
-	 */
 	@property({ type: String })
-	size: "small" | "medium" | "large" = "medium";
+	size: ButtonStyles["size"] = "md";
 
-	/**
-	 * Whether the button is disabled
-	 */
+	@property({ type: Boolean })
+	isLoading: ButtonStyles["isLoading"] = false;
+
 	@property({ type: Boolean })
 	disabled = false;
 
-	/**
-	 * Click event handler
-	 */
 	private _handleClick(e: Event) {
 		if (this.disabled) {
 			e.preventDefault();
 			return;
 		}
 
-		// Dispatch custom event
 		this.dispatchEvent(
 			new CustomEvent(":click", {
 				bubbles: true,
@@ -50,16 +32,15 @@ export class MyButton extends LitElement {
 	}
 
 	render() {
-		const classes = {
-			button: true,
-			[`button--${this.variant}`]: true,
-			[`button--${this.size}`]: this.size !== "medium",
-			"button--disabled": this.disabled,
-		};
+		const styles = buttonStyles({
+			variant: this.variant,
+			size: this.size,
+			isLoading: this.isLoading,
+		});
 
 		return html`
       <button
-        class=${classMap(classes)}
+        class=${styles.base()}
         ?disabled=${this.disabled}
         @click=${this._handleClick}
         part="button"
@@ -68,6 +49,4 @@ export class MyButton extends LitElement {
       </button>
     `;
 	}
-
-	static styles = [styles, buttonStyles];
 }

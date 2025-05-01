@@ -43,11 +43,10 @@ export class PageHome extends BaseElement {
 
           <div class="flex justify-center mb-6">
             <my-button
-              size="medium"
+              size="md"
               variant="primary"
               @:click=${this._onClick}
               ?disabled=${this.count >= 10}
-              class="${this.count >= 10 ? "opacity-50 cursor-not-allowed" : "hover:scale-105 transition-transform"}"
               part="button"
             >
               count is ${this.count}
@@ -63,8 +62,6 @@ export class PageHome extends BaseElement {
 	private _onClick() {
 		this.count++;
 	}
-
-	static styles = [];
 }
 
 declare global {
