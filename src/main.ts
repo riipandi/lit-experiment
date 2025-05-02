@@ -1,10 +1,10 @@
 // Import the components
-import "./components/button";
+import './components/button'
 
 // Import the pages
-import "./pages/home";
-import "./pages/not-found";
+import './pages/home'
+import './pages/not-found'
 
 // Import application routes
-import "./layouts/root-layout";
-import "./routes";
+import './layouts/root-layout'
+import './routes'

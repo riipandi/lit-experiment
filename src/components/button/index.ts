@@ -1,9 +1,9 @@
-import type { MyButton } from "./button.component";
+import type { MyButton } from './button.component'
 
 declare global {
-	interface HTMLElementTagNameMap {
-		"my-button": MyButton;
-	}
+  interface HTMLElementTagNameMap {
+    'my-button': MyButton
+  }
 }
 
-export * from "./button.component";
+export * from './button.component'

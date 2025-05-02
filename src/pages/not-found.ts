@@ -1,11 +1,11 @@
-import { css, html } from "lit";
-import { customElement } from "lit/decorators.js";
-import { BaseElement } from "#/core/base-element";
+import { css, html } from 'lit'
+import { customElement } from 'lit/decorators.js'
+import { BaseElement } from '#/core/base-element'
 
-@customElement("page-not-found")
+@customElement('page-not-found')
 export class PageNotFound extends BaseElement {
-	render() {
-		return html`
+  render() {
+    return html`
       <div class="not-found-container">
         <h1 class="error-code">404</h1>
         <h2 class="error-title">Page Not Found</h2>
@@ -18,22 +18,22 @@ export class PageNotFound extends BaseElement {
           </a>
         </div>
       </div>
-    `;
-	}
+    `
+  }
 
-	private _handleHomeClick(e: Event) {
-		e.preventDefault();
-		// Dispatch custom event to be listened by my-app
-		this.dispatchEvent(
-			new CustomEvent("navigate", {
-				bubbles: true,
-				composed: true,
-				detail: { path: "/" },
-			}),
-		);
-	}
+  private _handleHomeClick(e: Event) {
+    e.preventDefault()
+    // Dispatch custom event to be listened by my-app
+    this.dispatchEvent(
+      new CustomEvent('navigate', {
+        bubbles: true,
+        composed: true,
+        detail: { path: '/' },
+      }),
+    )
+  }
 
-	static styles = css`
+  static styles = css`
     :host {
       display: block;
       width: 100%;
@@ -104,11 +104,11 @@ export class PageNotFound extends BaseElement {
         width: 100%;
       }
     }
-  `;
+  `
 }
 
 declare global {
-	interface HTMLElementTagNameMap {
-		"page-not-found": PageNotFound;
-	}
+  interface HTMLElementTagNameMap {
+    'page-not-found': PageNotFound
+  }
 }
