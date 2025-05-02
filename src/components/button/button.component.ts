@@ -1,13 +1,17 @@
-import { html } from 'lit'
+import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { BaseElement } from '#/core/base-element'
-import { type ButtonStyles, buttonStyles } from './button.css'
+import { classMap } from 'lit/directives/class-map.js'
+import { buttonStyles } from './button.styles'
+
+export type ButtonProps = {
+  variant: 'primary' | 'secondary' | 'danger'
+  size: 'small' | 'medium' | 'large'
+}
 
 @customElement('my-button')
-export class MyButton extends BaseElement {
-  @property({ type: String }) variant: ButtonStyles['variant'] = 'primary'
-  @property({ type: String }) size: ButtonStyles['size'] = 'md'
-  @property({ type: Boolean }) isLoading: ButtonStyles['isLoading'] = false
+export class MyButton extends LitElement {
+  @property({ type: String }) variant: ButtonProps['variant'] = 'primary'
+  @property({ type: String }) size: ButtonProps['size'] = 'medium'
   @property({ type: Boolean }) disabled = false
 
   private _handleClick(e: Event) {
@@ -15,7 +19,6 @@ export class MyButton extends BaseElement {
       e.preventDefault()
       return
     }
-
     this.dispatchEvent(
       new CustomEvent(':click', {
         bubbles: true,
@@ -25,15 +28,16 @@ export class MyButton extends BaseElement {
   }
 
   render() {
-    const styles = buttonStyles({
-      variant: this.variant,
-      size: this.size,
-      isLoading: this.isLoading,
-    })
+    const classes = {
+      button: true,
+      [`button--${this.variant}`]: true,
+      [`button--${this.size}`]: this.size !== 'medium',
+      'button--disabled': this.disabled,
+    }
 
     return html`
       <button
-        class=${styles.base()}
+        class=${classMap(classes)}
         ?disabled=${this.disabled}
         @click=${this._handleClick}
         part="button"
@@ -42,4 +46,6 @@ export class MyButton extends BaseElement {
       </button>
     `
   }
+
+  static styles = [buttonStyles]
 }

@@ -1,7 +1,6 @@
 import { Routes } from '@lit-labs/router'
-import { html } from 'lit'
+import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { BaseElement } from '#/core/base-element'
 
 // Polyfills URLPattern to handle better borwsers compatibility.
 // @see: https://developer.mozilla.org/en-US/docs/Web/API/URLPattern#browser_compatibility
@@ -9,7 +8,7 @@ import { BaseElement } from '#/core/base-element'
 import 'urlpattern-polyfill'
 
 @customElement('my-app')
-export class MyApp extends BaseElement {
+export class MyApp extends LitElement {
   private _routes = new Routes(
     this,
     [
@@ -19,7 +18,7 @@ export class MyApp extends BaseElement {
           html`
             <root-layout @navigate=${this._onNavigate}>
               <page-home>
-                <h1>Vite + Lit + Tailwind CSS</h1>
+                <h1>Vite + Lit</h1>
               </page-home>
             </root-layout>
           `,

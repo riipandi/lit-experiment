@@ -1,9 +1,8 @@
-import { css, html } from 'lit'
+import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { BaseElement } from '#/core/base-element'
 
 @customElement('page-not-found')
-export class PageNotFound extends BaseElement {
+export class PageNotFound extends LitElement {
   render() {
     return html`
       <div class="not-found-container">
@@ -47,31 +46,36 @@ export class PageNotFound extends BaseElement {
       justify-content: center;
       text-align: center;
       padding: 2rem;
-      min-height: 100vh; /* Full viewport height */
-      width: 100%; /* Full width */
+      min-height: 100vh;
+      width: 100%;
       box-sizing: border-box;
+      background-color: var(--color-background);
+      color: var(--color-foreground);
     }
 
     .error-code {
-      font-size: clamp(6rem, 15vw, 8rem); /* Responsive font size */
+      /* Responsive font size */
+      font-size: clamp(6rem, 15vw, 8rem);
       font-weight: 700;
       margin: 0;
-      color: #e63946;
+      color: var(--color-destructive);
       line-height: 1;
     }
 
     .error-title {
-      font-size: clamp(1.5rem, 5vw, 2.5rem); /* Responsive font size */
+      /* Responsive font size */
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
       margin: 1rem 0;
-      color: #1d3557;
+      color: var(--color-foreground);
     }
 
     .error-message {
-      font-size: clamp(1rem, 3vw, 1.2rem); /* Responsive font size */
+      /* Responsive font size */
+      font-size: clamp(1rem, 3vw, 1.2rem);
       margin-bottom: 2rem;
       max-width: 100%;
       width: 600px;
-      color: #457b9d;
+      color: var(--color-muted-foreground);
     }
 
     .action-container {
@@ -81,16 +85,16 @@ export class PageNotFound extends BaseElement {
     .back-button {
       display: inline-block;
       padding: 0.75rem 1.5rem;
-      background-color: #1d3557;
-      color: white;
+      background-color: var(--color-primary);
+      color: var(--color-primary-foreground);
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: var(--radius-lg);
       font-weight: 500;
       transition: background-color 0.3s ease;
     }
 
     .back-button:hover {
-      background-color: #2a4a73;
+      filter: brightness(1.1);
       cursor: pointer;
     }
 
@@ -99,7 +103,6 @@ export class PageNotFound extends BaseElement {
       .not-found-container {
         padding: 1rem;
       }
-
       .error-message {
         width: 100%;
       }

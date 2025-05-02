@@ -1,48 +1,33 @@
-import { html } from 'lit'
+import { LitElement, css, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import litLogo from '/images/lit.svg'
 import viteLogo from '/images/vite.svg'
-import { BaseElement } from '#/core/base-element'
 
-/**
- * An example element.
- *
- * @slot - This element has a slot
- * @csspart button - The button
- */
 @customElement('page-home')
-export class PageHome extends BaseElement {
-  /**
-   * Copy for the read the docs hint.
-   */
-  @property()
-  docsHint = 'Click on the Vite and Lit logos to learn more'
-
-  /**
-   * The number of times the button has been clicked.
-   */
+export class PageHome extends LitElement {
+  @property() docsHint = 'Click on the Vite and Lit logos to learn more'
   @property({ type: Number }) count = 0
 
   render() {
     return html`
-      <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <div class="flex flex-col items-center justify-center min-h-[70vh]">
-          <div class="flex justify-center items-center gap-8 mb-8">
-            <a href="https://vite.dev" target="_blank" class="hover:opacity-80 transition-opacity">
-              <img src=${viteLogo} class="h-24 w-24" alt="Vite logo" />
+      <div class="container">
+        <div class="hero">
+          <div class="logo-container">
+            <a href="https://vite.dev" target="_blank" class="logo-link">
+              <img src=${viteLogo} class="logo" alt="Vite logo" />
             </a>
-            <a href="https://lit.dev" target="_blank" class="hover:opacity-80 transition-opacity">
-              <img src=${litLogo} class="h-24 w-24" alt="Lit logo" />
+            <a href="https://lit.dev" target="_blank" class="logo-link">
+              <img src=${litLogo} class="logo" alt="Lit logo" />
             </a>
           </div>
 
-          <div class="mb-8">
+          <div class="slot-container">
             <slot></slot>
           </div>
 
-          <div class="flex justify-center mb-6">
+          <div class="button-container">
             <my-button
-              size="md"
+              size="medium"
               variant="primary"
               @:click=${this._onClick}
               ?disabled=${this.count >= 10}
@@ -52,7 +37,7 @@ export class PageHome extends BaseElement {
             </my-button>
           </div>
 
-          <p class="text-sm text-gray-500 text-center">${this.docsHint}</p>
+          <p class="hint-text">${this.docsHint}</p>
         </div>
       </div>
     `
@@ -61,6 +46,65 @@ export class PageHome extends BaseElement {
   private _onClick() {
     this.count++
   }
+
+  static styles = css`
+    .container {
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      max-width: 56rem;
+      background-color: var(--color-background);
+      color: var(--color-foreground);
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo-link {
+      transition: opacity 0.3s;
+    }
+
+    .logo-link:hover {
+      opacity: 0.8;
+    }
+
+    .logo {
+      height: 6rem;
+      width: 6rem;
+    }
+
+    .slot-container {
+      margin-bottom: 2rem;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .hint-text {
+      font-size: 0.875rem;
+      color: var(--color-muted-foreground);
+      text-align: center;
+    }
+  `
 }
 
 declare global {
