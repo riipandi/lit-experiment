@@ -33,7 +33,7 @@
         "storybook": "^8.6.12",
         "tailwind-variants": "^1.0.0",
         "tailwindcss": "^4.1.5",
-        "typescript": "~5.7.2",
+        "typescript": "^5.8.3",
         "vite": "^6.3.1",
         "vite-plugin-lit-css": "^2.1.0",
         "vite-tsconfig-paths": "^5.1.4"
