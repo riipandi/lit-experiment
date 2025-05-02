@@ -21,11 +21,26 @@ export default defineConfig({
     manifest: true,
     emptyOutDir: true,
     chunkSizeWarningLimit: 1024 * 4,
-    rollupOptions: { input: resolve('index.html') },
+    rollupOptions: {
+      input: resolve('index.html'),
+      output: {
+        entryFileNames: `assets/[name]-[hash].js`,
+        assetFileNames: `assets/[name]-[hash][extname]`,
+        chunkFileNames: `assets/[name]-[hash].js`,
+        manualChunks(id) {
+          if (id.includes('lucide')) {
+            return 'lucide'
+          }
+          if (id.endsWith('.css') || id.includes('.module.css')) {
+            return 'styles'
+          }
+        },
+      },
+    },
     terserOptions: { format: { comments: false } },
     cssMinify: 'lightningcss',
     outDir: resolve('dist'),
-    minify: false,
+    minify: process.env.NODE_ENV === 'production',
   },
   css: {
     transformer: 'lightningcss',
@@ -35,6 +50,6 @@ export default defineConfig({
   },
   server: { port: 5173 },
   preview: { port: 5173 },
-  esbuild: { legalComments: 'none' },
+  esbuild: { legalComments: 'inline' },
   optimizeDeps: { force: true },
 })

@@ -8,10 +8,22 @@ export class RootLayout extends LitElement {
       <div class="container">
         <header class="header">
           <nav class="nav">
-            <a class="nav-link" @click=${(e: Event) => this._handleNavClick(e, '/')}>Home</a>
-            <a class="nav-link" @click=${(e: Event) => this._handleNavClick(e, '/projects')}>Projects</a>
-            <a class="nav-link" @click=${(e: Event) => this._handleNavClick(e, '/about')}>About</a>
-            <a class="nav-link" href="/404">Not Found</a>
+            <a class="nav-link" @click=${(e: Event) => this._handleNavClick(e, '/')}>
+              <lucide-icon name="home" size="18"></lucide-icon>
+              <span>Home</span>
+            </a>
+            <a class="nav-link" @click=${(e: Event) => this._handleNavClick(e, '/projects')}>
+              <lucide-icon name="folder" size="18"></lucide-icon>
+              <span>Projects</span>
+            </a>
+            <a class="nav-link" @click=${(e: Event) => this._handleNavClick(e, '/about')}>
+              <lucide-icon name="user" size="18"></lucide-icon>
+              <span>About</span>
+            </a>
+            <a class="nav-link" href="/404">
+              <lucide-icon name="alert-circle" size="18"></lucide-icon>
+              <span>Not Found</span>
+            </a>
           </nav>
         </header>
         <main class="main">
@@ -51,23 +63,30 @@ export class RootLayout extends LitElement {
       justify-content: space-between;
       align-items: center;
       padding: 1rem;
+      border-bottom: 1px solid var(--color-border, #eaeaea);
     }
 
     .nav {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       cursor: pointer;
+      color: var(--color-text, #333);
+      text-decoration: none;
+      transition: color 0.2s ease;
     }
 
     .nav-link:hover {
-      text-decoration: underline;
+      color: var(--color-primary, #0070f3);
     }
 
     .main {
-      padding: 1rem;
+      padding: 1.5rem;
     }
   `
 }
