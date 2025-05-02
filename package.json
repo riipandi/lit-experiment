@@ -10,13 +10,14 @@
         "check": "biome check . --write",
         "format": "biome format . --write",
         "lint": "biome lint . --write",
+        "update-deps": "npm-check-updates --configFileName .ncurc.json",
         "storybook": "storybook dev -p 6006",
         "build:storybook": "storybook build",
         "typecheck": "tsc -b"
     },
     "dependencies": {
         "@lit-labs/router": "^0.1.4",
-        "lit": "^3.2.1",
+        "lit": "^3.3.0",
         "urlpattern-polyfill": "^10.0.0"
     },
     "devDependencies": {
@@ -27,11 +28,13 @@
         "@storybook/test": "^8.6.12",
         "@storybook/web-components": "^8.6.12",
         "@storybook/web-components-vite": "^8.6.12",
+        "@types/node": "^22.15.3",
         "browserslist": "^4.24.4",
         "lightningcss": "^1.29.3",
+        "npm-check-updates": "^18.0.1",
         "storybook": "^8.6.12",
         "typescript": "^5.8.3",
-        "vite": "^6.3.1",
+        "vite": "^6.3.4",
         "vite-plugin-lit-lightningcss": "^0.0.3",
         "vite-tsconfig-paths": "^5.1.4"
     },
