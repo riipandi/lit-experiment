@@ -1,21 +1,20 @@
-import { css, html } from 'lit'
+import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { BaseElement } from '#/core/base-element'
 
 @customElement('root-layout')
-export class RootLayout extends BaseElement {
+export class RootLayout extends LitElement {
   render() {
     return html`
-      <div class="flex flex-col size-full bg-background">
-        <header class="flex justify-between items-center p-4">
-          <nav class="flex gap-4">
-            <a class="hover:underline cursor-pointer" @click=${(e: Event) => this._handleNavClick(e, '/')}>Home</a>
-            <a class="hover:underline cursor-pointer" @click=${(e: Event) => this._handleNavClick(e, '/projects')}>Projects</a>
-            <a class="hover:underline cursor-pointer" @click=${(e: Event) => this._handleNavClick(e, '/about')}>About</a>
-            <a class="hover:underline cursor-pointer" href="/404">Not Found</a>
+      <div class="container">
+        <header class="header">
+          <nav class="nav">
+            <a class="nav-link" @click=${(e: Event) => this._handleNavClick(e, '/')}>Home</a>
+            <a class="nav-link" @click=${(e: Event) => this._handleNavClick(e, '/projects')}>Projects</a>
+            <a class="nav-link" @click=${(e: Event) => this._handleNavClick(e, '/about')}>About</a>
+            <a class="nav-link" href="/404">Not Found</a>
           </nav>
         </header>
-        <main class="p-4">
+        <main class="main">
           <slot></slot>
         </main>
       </div>
@@ -37,6 +36,38 @@ export class RootLayout extends BaseElement {
     :host {
       display: block;
       width: 100%;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-background, #ffffff);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-link {
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .main {
+      padding: 1rem;
     }
   `
 }

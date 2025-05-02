@@ -1,21 +1,46 @@
-import { html } from 'lit'
+import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { BaseElement } from '#/core/base-element'
-import { type ButtonStyles, buttonStyles } from './button.css'
+import { classMap } from 'lit/directives/class-map.js'
+import { buttonStyles, styles } from './button.css'
 
+/**
+ * A customizable button component with different variants
+ *
+ * @slot - Button content
+ * @csspart button - The button element
+ */
 @customElement('my-button')
-export class MyButton extends BaseElement {
-  @property({ type: String }) variant: ButtonStyles['variant'] = 'primary'
-  @property({ type: String }) size: ButtonStyles['size'] = 'md'
-  @property({ type: Boolean }) isLoading: ButtonStyles['isLoading'] = false
-  @property({ type: Boolean }) disabled = false
+export class MyButton extends LitElement {
+  /**
+   * The button variant
+   * @type {"primary" | "secondary" | "danger"}
+   */
+  @property({ type: String })
+  variant: 'primary' | 'secondary' | 'danger' = 'primary'
 
+  /**
+   * The button size
+   * @type {"small" | "medium" | "large"}
+   */
+  @property({ type: String })
+  size: 'small' | 'medium' | 'large' = 'medium'
+
+  /**
+   * Whether the button is disabled
+   */
+  @property({ type: Boolean })
+  disabled = false
+
+  /**
+   * Click event handler
+   */
   private _handleClick(e: Event) {
     if (this.disabled) {
       e.preventDefault()
       return
     }
 
+    // Dispatch custom event
     this.dispatchEvent(
       new CustomEvent(':click', {
         bubbles: true,
@@ -25,15 +50,16 @@ export class MyButton extends BaseElement {
   }
 
   render() {
-    const styles = buttonStyles({
-      variant: this.variant,
-      size: this.size,
-      isLoading: this.isLoading,
-    })
+    const classes = {
+      button: true,
+      [`button--${this.variant}`]: true,
+      [`button--${this.size}`]: this.size !== 'medium',
+      'button--disabled': this.disabled,
+    }
 
     return html`
       <button
-        class=${styles.base()}
+        class=${classMap(classes)}
         ?disabled=${this.disabled}
         @click=${this._handleClick}
         part="button"
@@ -42,4 +68,6 @@ export class MyButton extends BaseElement {
       </button>
     `
   }
+
+  static styles = [styles, buttonStyles]
 }

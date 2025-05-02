@@ -1,9 +1,8 @@
-import { css, html } from 'lit'
+import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { BaseElement } from '#/core/base-element'
 
 @customElement('page-not-found')
-export class PageNotFound extends BaseElement {
+export class PageNotFound extends LitElement {
   render() {
     return html`
       <div class="not-found-container">
