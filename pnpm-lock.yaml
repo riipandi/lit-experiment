@@ -14,6 +14,9 @@ importers:
       lit:
         specifier: ^3.2.1
         version: 3.3.0
+      urlpattern-polyfill:
+        specifier: ^10.0.0
+        version: 10.0.0
     devDependencies:
       '@storybook/addon-essentials':
         specifier: ^8.6.12
@@ -1309,6 +1312,9 @@ packages:
     resolution: {integrity: sha512-4/u/j4FrCKdi17jaxuJA0jClGxB1AvU2hw/IuayPc4ay1XGaJs/rbb4v5WKwAjNifjmXK9PIFyuPiaK8azyR9w==}
     engines: {node: '>=14.0.0'}
 
+  urlpattern-polyfill@10.0.0:
+    resolution: {integrity: sha512-H/A06tKD7sS1O1X2SshBVeA5FLycRpjqiBeqGKmBwBDBy28EnRjORxTNe269KSSr5un5qyWi1iL61wLxpd+ZOg==}
+
   util@0.12.5:
     resolution: {integrity: sha512-kZf/K6hEIrWHI6XqOFUiiMa+79wE/D8Q+NCNAWclkyg3b4d2k7s0QGepNjiABc+aR3N1PAyHL7p6UcLY6LmrnA==}
 
@@ -2509,6 +2515,8 @@ snapshots:
     dependencies:
       acorn: 8.14.1
       webpack-virtual-modules: 0.6.2
+
+  urlpattern-polyfill@10.0.0: {}
 
   util@0.12.5:
     dependencies:

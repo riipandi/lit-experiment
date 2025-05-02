@@ -12,7 +12,8 @@
 	},
 	"dependencies": {
 		"@lit-labs/router": "^0.1.4",
-		"lit": "^3.2.1"
+		"lit": "^3.2.1",
+		"urlpattern-polyfill": "^10.0.0"
 	},
 	"devDependencies": {
 		"@storybook/addon-essentials": "^8.6.12",

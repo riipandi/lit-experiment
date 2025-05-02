@@ -3,6 +3,11 @@ import { html } from "lit";
 import { customElement } from "lit/decorators.js";
 import { BaseElement } from "#/core/base-element";
 
+// Polyfills URLPattern to handle better borwsers compatibility.
+// @see: https://developer.mozilla.org/en-US/docs/Web/API/URLPattern#browser_compatibility
+// @ts-ignore: Property 'UrlPattern' does not exist
+import "urlpattern-polyfill";
+
 @customElement("my-app")
 export class MyApp extends BaseElement {
 	private _routes = new Routes(
