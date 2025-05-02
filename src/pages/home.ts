@@ -1,14 +1,22 @@
+import { StoreController } from '@nanostores/lit'
 import { LitElement, css, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { saveUiState, uiStore } from '#/stores/ui.store'
+
 import litLogo from '/images/lit.svg'
 import viteLogo from '/images/vite.svg'
 
 @customElement('page-home')
 export class PageHome extends LitElement {
   @property() docsHint = 'Click on the Vite and Lit logos to learn more'
-  @property({ type: Number }) count = 0
+
+  protected uiState = new StoreController(this, uiStore)
 
   render() {
+    const { counter, disabled = false } = this.uiState.value.global
+    const isMaxReached = counter >= 10
+    const isMinReached = counter <= 0
+
     return html`
       <div class="container">
         <div class="hero">
@@ -25,15 +33,46 @@ export class PageHome extends LitElement {
             <slot></slot>
           </div>
 
+          <div class="counter-container">
+            <my-button
+              size="medium"
+              variant="secondary"
+              @click=${this._onDecrement}
+              ?disabled=${isMinReached || disabled}
+              part="button"
+            >
+              -
+            </my-button>
+
+            <div class="counter-value">
+              ${counter}
+            </div>
+
+            <my-button
+              size="medium"
+              variant="secondary"
+              @click=${this._onIncrement}
+              ?disabled=${isMaxReached || disabled}
+              part="button"
+            >
+              +
+            </my-button>
+          </div>
+
+          <div class="counter-status">
+            ${isMaxReached ? html`<span class="status-max">Maximum value reached!</span>` : ''}
+            ${isMinReached ? html`<span class="status-min">Minimum value reached!</span>` : ''}
+            ${disabled ? html`<span class="status-disabled">Counter is disabled</span>` : ''}
+          </div>
+
           <div class="button-container">
             <my-button
               size="medium"
               variant="primary"
-              @:click=${this._onClick}
-              ?disabled=${this.count >= 10}
+              @click=${this._toggleCounter}
               part="button"
             >
-              count is ${this.count}
+              ${disabled ? 'Enable' : 'Disable'} Counter
             </my-button>
           </div>
 
@@ -43,12 +82,43 @@ export class PageHome extends LitElement {
     `
   }
 
-  private _onClick() {
-    this.count++
+  private _onIncrement() {
+    const { disabled = false } = this.uiState.value.global
+    if (disabled) return
+
+    const currentCounter = this.uiState.value.global.counter
+    if (currentCounter < 10) {
+      saveUiState('global', {
+        ...this.uiState.value.global,
+        counter: currentCounter + 1,
+      })
+    }
+  }
+
+  private _onDecrement() {
+    const { disabled = false } = this.uiState.value.global
+    if (disabled) return
+
+    const currentCounter = this.uiState.value.global.counter
+    if (currentCounter > 0) {
+      saveUiState('global', {
+        ...this.uiState.value.global,
+        counter: currentCounter - 1,
+      })
+    }
+  }
+
+  private _toggleCounter() {
+    const currentDisabled = this.uiState.value.global.disabled || false
+
+    saveUiState('global', {
+      ...this.uiState.value.global,
+      disabled: !currentDisabled,
+    })
   }
 
   static styles = css`
-    .container {
+    :host {
       margin-left: auto;
       margin-right: auto;
       padding-left: 1rem;
@@ -66,6 +136,7 @@ export class PageHome extends LitElement {
       align-items: center;
       justify-content: center;
       min-height: 70vh;
+      gap: 1.5rem;
     }
 
     .logo-container {
@@ -73,7 +144,6 @@ export class PageHome extends LitElement {
       justify-content: center;
       align-items: center;
       gap: 2rem;
-      margin-bottom: 2rem;
     }
 
     .logo-link {
@@ -90,19 +160,56 @@ export class PageHome extends LitElement {
     }
 
     .slot-container {
-      margin-bottom: 2rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .counter-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .counter-value {
+      font-size: 2rem;
+      font-weight: bold;
+      min-width: 3rem;
+      text-align: center;
+      color: var(--color-primary);
+    }
+
+    .counter-status {
+      text-align: center;
+      min-height: 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    .status-max {
+      color: var(--color-warning, orange);
+    }
+
+    .status-min {
+      color: var(--color-info, blue);
+    }
+
+    .status-disabled {
+      color: var(--color-error, red);
     }
 
     .button-container {
       display: flex;
       justify-content: center;
-      margin-bottom: 1.5rem;
+      margin-top: 0.1rem;
     }
 
     .hint-text {
-      font-size: 0.875rem;
+      font-weight: 500;
+      font-size: 1.125rem;
+      line-height: 1.75rem;
       color: var(--color-muted-foreground);
       text-align: center;
+      margin-top: 1rem;
     }
   `
 }
