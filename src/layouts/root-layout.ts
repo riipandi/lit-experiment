@@ -43,7 +43,7 @@ export class RootLayout extends LitElement {
       flex-direction: column;
       width: 100%;
       height: 100%;
-      background-color: var(--color-background, #ffffff);
+      background-color: var(--color-background);
     }
 
     .header {

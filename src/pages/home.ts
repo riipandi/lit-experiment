@@ -3,23 +3,9 @@ import { customElement, property } from 'lit/decorators.js'
 import litLogo from '/images/lit.svg'
 import viteLogo from '/images/vite.svg'
 
-/**
- * An example element.
- *
- * @slot - This element has a slot
- * @csspart button - The button
- */
 @customElement('page-home')
 export class PageHome extends LitElement {
-  /**
-   * Copy for the read the docs hint.
-   */
-  @property()
-  docsHint = 'Click on the Vite and Lit logos to learn more'
-
-  /**
-   * The number of times the button has been clicked.
-   */
+  @property() docsHint = 'Click on the Vite and Lit logos to learn more'
   @property({ type: Number }) count = 0
 
   render() {
@@ -70,6 +56,8 @@ export class PageHome extends LitElement {
       padding-top: 2rem;
       padding-bottom: 2rem;
       max-width: 56rem;
+      background-color: var(--color-background);
+      color: var(--color-foreground);
     }
 
     .hero {
@@ -113,7 +101,7 @@ export class PageHome extends LitElement {
 
     .hint-text {
       font-size: 0.875rem;
-      color: #6b7280;
+      color: var(--color-muted-foreground);
       text-align: center;
     }
   `

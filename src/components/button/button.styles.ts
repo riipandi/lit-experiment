@@ -1,8 +1,12 @@
 import { css } from 'lit'
 
 export const buttonStyles = css`
+  :host {
+    display: inline-block;
+  }
+
   .button {
-    border-radius: 8px;
+    border-radius: var(--radius-lg);
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
     font-size: 1em;
@@ -14,30 +18,30 @@ export const buttonStyles = css`
 
   /* Primary variant */
   .button--primary {
-    background-color: #646cff;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
   }
   .button--primary:hover {
-    background-color: #535bf2;
+    filter: brightness(1.1);
   }
 
   /* Secondary variant */
   .button--secondary {
-    background-color: #f9f9f9;
-    color: #213547;
-    border-color: #213547;
+    background-color: var(--color-secondary);
+    color: var(--color-secondary-foreground);
+    border-color: var(--color-border);
   }
   .button--secondary:hover {
-    background-color: #e9e9e9;
+    background-color: var(--color-accent);
   }
 
   /* Danger variant */
   .button--danger {
-    background-color: #ff4d4f;
-    color: white;
+    background-color: var(--color-destructive);
+    color: var(--color-destructive-foreground);
   }
   .button--danger:hover {
-    background-color: #ff7875;
+    filter: brightness(1.1);
   }
 
   /* Disabled state */
@@ -59,23 +63,6 @@ export const buttonStyles = css`
 
   .button:focus,
   .button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
-`
-
-export const styles = css`
-  :host {
-    display: inline-block;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .button--secondary {
-      background-color: #1a1a1a;
-      color: #f9f9f9;
-      border-color: #f9f9f9;
-    }
-    .button--secondary:hover {
-      background-color: #2a2a2a;
-    }
+    outline: 4px auto var(--color-ring);
   }
 `

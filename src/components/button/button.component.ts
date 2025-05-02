@@ -1,46 +1,24 @@
 import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
-import { buttonStyles, styles } from './button.css'
+import { buttonStyles } from './button.styles'
 
-/**
- * A customizable button component with different variants
- *
- * @slot - Button content
- * @csspart button - The button element
- */
+export type ButtonProps = {
+  variant: 'primary' | 'secondary' | 'danger'
+  size: 'small' | 'medium' | 'large'
+}
+
 @customElement('my-button')
 export class MyButton extends LitElement {
-  /**
-   * The button variant
-   * @type {"primary" | "secondary" | "danger"}
-   */
-  @property({ type: String })
-  variant: 'primary' | 'secondary' | 'danger' = 'primary'
+  @property({ type: String }) variant: ButtonProps['variant'] = 'primary'
+  @property({ type: String }) size: ButtonProps['size'] = 'medium'
+  @property({ type: Boolean }) disabled = false
 
-  /**
-   * The button size
-   * @type {"small" | "medium" | "large"}
-   */
-  @property({ type: String })
-  size: 'small' | 'medium' | 'large' = 'medium'
-
-  /**
-   * Whether the button is disabled
-   */
-  @property({ type: Boolean })
-  disabled = false
-
-  /**
-   * Click event handler
-   */
   private _handleClick(e: Event) {
     if (this.disabled) {
       e.preventDefault()
       return
     }
-
-    // Dispatch custom event
     this.dispatchEvent(
       new CustomEvent(':click', {
         bubbles: true,
@@ -69,5 +47,5 @@ export class MyButton extends LitElement {
     `
   }
 
-  static styles = [styles, buttonStyles]
+  static styles = [buttonStyles]
 }
