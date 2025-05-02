@@ -1,12 +1,6 @@
 @import "./normalize.css";
 @import "./motion.css";
 
-/* Wait for components to loaded, handle flash of Undefined Custom Elements (FOUCE) when the page loads */
-/* @ref: https://www.abeautifulsite.net/posts/flash-of-undefined-custom-elements */
-:not(:defined) {
-    visibility: hidden;
-}
-
 /* Global variables for the theme */
 :root {
     /* Border radius scales */

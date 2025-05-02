@@ -31,9 +31,6 @@ export default defineConfig({
           if (id.includes('lucide')) {
             return 'lucide'
           }
-          if (id.endsWith('.css') || id.includes('.module.css')) {
-            return 'styles'
-          }
         },
       },
     },

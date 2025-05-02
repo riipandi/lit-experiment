@@ -1,167 +1,171 @@
-/*! modern-normalize v3.0.1 | MIT License | https://github.com/sindresorhus/modern-normalize */
+/*! @csstools/normalize.css v12.1.0 | CC0-1.0 License | https://github.com/csstools/normalize.css */
 
-/*
-Document
-========
-*/
+/* Document
+ * ========================================================================== */
 
 /**
-Use a better box model (opinionated).
-*/
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
 
-*,
-::before,
-::after {
-    box-sizing: border-box;
+:where(html) {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+ * ========================================================================== */
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Edge, Firefox, and Safari.
+ */
+
+:where(h1) {
+    font-size: 2em;
+    margin-block-end: 0.67em;
+    margin-block-start: 0.67em;
+}
+
+/* Grouping content
+ * ========================================================================== */
+
+/**
+ * Remove the margin on nested lists in Chrome, Edge, and Safari.
+ */
+
+:where(dl, ol, ul) :where(dl, ol, ul) {
+    margin-block-end: 0;
+    margin-block-start: 0;
 }
 
 /**
-1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
-2. Correct the line height in all browsers.
-3. Prevent adjustments of font size after orientation changes in iOS.
-4. Use a more readable tab size (opinionated).
-*/
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Correct the inheritance of border color in Firefox.
+ */
 
-html {
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji"; /* 1 */
-    line-height: 1.15; /* 2 */
-    -webkit-text-size-adjust: 100%; /* 3 */
-    tab-size: 4; /* 4 */
+:where(hr) {
+    box-sizing: content-box; /* 1 */
+    color: inherit; /* 2 */
+    height: 0; /* 1 */
 }
 
-/*
-Sections
-========
-*/
+/* Text-level semantics
+ * ========================================================================== */
 
 /**
-Remove the margin in all browsers.
-*/
+ * Add the correct text decoration in Safari.
+ */
 
-body {
-    margin: 0;
+:where(abbr[title]) {
+    text-decoration: underline;
+    text-decoration: underline dotted;
 }
 
-/*
-Text-level semantics
-====================
-*/
-
 /**
-Add the correct font weight in Chrome and Safari.
-*/
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
 
-b,
-strong {
+:where(b, strong) {
     font-weight: bolder;
 }
 
 /**
-1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
-2. Correct the odd 'em' font sizing in all browsers.
-*/
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
 
-code,
-kbd,
-samp,
-pre {
-    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; /* 1 */
+:where(code, kbd, pre, samp) {
+    font-family: monospace; /* 1 */
     font-size: 1em; /* 2 */
 }
 
 /**
-Add the correct font size in all browsers.
-*/
+ * Add the correct font size in all browsers.
+ */
 
-small {
+:where(small) {
     font-size: 80%;
 }
 
-/**
-Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
-*/
-
-sub,
-sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-}
-
-sub {
-    bottom: -0.25em;
-}
-
-sup {
-    top: -0.5em;
-}
-
-/*
-Tabular data
-============
-*/
+/* Tabular data
+ * ========================================================================== */
 
 /**
-Correct table border color inheritance in Chrome and Safari. (https://issues.chromium.org/issues/40615503, https://bugs.webkit.org/show_bug.cgi?id=195016)
-*/
+ * 1. Correct table border color in Chrome, Edge, and Safari.
+ * 2. Remove text indentation from table contents in Chrome, Edge, and Safari.
+ */
 
-table {
-    border-color: currentcolor;
+:where(table) {
+    border-color: currentColor; /* 1 */
+    text-indent: 0; /* 2 */
 }
 
-/*
-Forms
-=====
-*/
+/* Forms
+ * ========================================================================== */
 
 /**
-1. Change the font styles in all browsers.
-2. Remove the margin in Firefox and Safari.
-*/
+ * Remove the margin on controls in Safari.
+ */
 
-button,
-input,
-optgroup,
-select,
-textarea {
-    font-family: inherit; /* 1 */
-    font-size: 100%; /* 1 */
-    line-height: 1.15; /* 1 */
-    margin: 0; /* 2 */
+:where(button, input, select) {
+    margin: 0;
 }
 
 /**
-Correct the inability to style clickable types in iOS and Safari.
-*/
+ * Remove the inheritance of text transform in Firefox.
+ */
 
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
+:where(button) {
+    text-transform: none;
+}
+
+/**
+ * Correct the inability to style buttons in iOS and Safari.
+ */
+
+:where(button, input:is([type="button" i], [type="reset" i], [type="submit" i])) {
     -webkit-appearance: button;
 }
 
 /**
-Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
-*/
+ * Add the correct vertical alignment in Chrome, Edge, and Firefox.
+ */
 
-legend {
-    padding: 0;
-}
-
-/**
-Add the correct vertical alignment in Chrome and Firefox.
-*/
-
-progress {
+:where(progress) {
     vertical-align: baseline;
 }
 
 /**
-Correct the cursor style of increment and decrement buttons in Safari.
-*/
+ * Remove the inheritance of text transform in Firefox.
+ */
+
+:where(select) {
+    text-transform: none;
+}
+
+/**
+ * Remove the margin in Firefox and Safari.
+ */
+
+:where(textarea) {
+    margin: 0;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome, Edge, and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+:where(input[type="search" i]) {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Safari.
+ */
 
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button {
@@ -169,42 +173,102 @@ Correct the cursor style of increment and decrement buttons in Safari.
 }
 
 /**
-1. Correct the odd appearance in Chrome and Safari.
-2. Correct the outline style in Safari.
-*/
+ * Correct the text style of placeholders in Chrome, Edge, and Safari.
+ */
 
-[type="search"] {
-    -webkit-appearance: textfield; /* 1 */
-    outline-offset: -2px; /* 2 */
+::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 0.54;
 }
 
 /**
-Remove the inner padding in Chrome and Safari on macOS.
-*/
+ * Remove the inner padding in Chrome, Edge, and Safari on macOS.
+ */
 
 ::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 
 /**
-1. Correct the inability to style clickable types in iOS and Safari.
-2. Change font properties to 'inherit' in Safari.
-*/
+ * 1. Correct the inability to style upload buttons in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
 
 ::-webkit-file-upload-button {
     -webkit-appearance: button; /* 1 */
     font: inherit; /* 2 */
 }
 
-/*
-Interactive
-===========
-*/
+/**
+ * Remove the inner border and padding of focus outlines in Firefox.
+ */
+
+:where(
+        button,
+        input:is([type="button" i], [type="color" i], [type="reset" i], [type="submit" i])
+    )::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+/**
+ * Restore the focus outline styles unset by the previous rule in Firefox.
+ */
+
+:where(
+        button,
+        input:is([type="button" i], [type="color" i], [type="reset" i], [type="submit" i])
+    )::-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+/**
+ * Remove the additional :invalid styles in Firefox.
+ */
+
+:where(:-moz-ui-invalid) {
+    box-shadow: none;
+}
+
+/* Interactive
+ * ========================================================================== */
 
 /*
-Add the correct display in Chrome and Safari.
-*/
+ * Add the correct styles in Safari.
+ */
 
-summary {
+:where(dialog) {
+    background-color: white;
+    border: solid;
+    color: black;
+    height: -moz-fit-content;
+    height: fit-content;
+    left: 0;
+    margin: auto;
+    padding: 1em;
+    position: absolute;
+    right: 0;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+:where(dialog:not([open])) {
+    display: none;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+:where(summary) {
     display: list-item;
+}
+
+/**
+ * Make elements with the HTML hidden attribute stay hidden by default.
+ * Handle flash of Undefined Custom Elements (FOUCE) when the page loads.
+ * @ref: https://www.abeautifulsite.net/posts/flash-of-undefined-custom-elements
+ */
+:not(:defined) {
+    visibility: hidden;
 }
